@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="ru">
+<head>
+   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+   <title>{% block title %}{% endblock %}</title>
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+   <style>
+        <style>
+			body {
+				background-color: {{color}}
+			}
+    </style>
+</head>
+<body>
+  <header>
+   {% block header %}
+    {% endblock %}
+  </header>
+   {% block main %}
+   {% endblock %}
+</body>
+<footer id="footer">
+	<div class="footer_div">
+		<h3>156</h3>
+		Лет
+	</div>
+	<div class="footer_div">
+		<h3>98 000</h3>
+		Квадратных метров
+	</div>
+	<div class="footer_div">
+		<h3>500 000</h3>
+		Всего посетителей
+	</div>
+	<div class="footer_div">
+		<h3>1267</h3>
+		Разных видов
+	</div>
+</footer>
+</html>

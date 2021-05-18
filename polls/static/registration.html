@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration</title>
+	<link rel="stylesheet" type="text/css" href="style2.css">
+</head>
+<body>
+	<header>
+		<nav>
+<div class="nav_left">
+ <p>Zoo</p>
+ <p>Свяжитесь с нами: +078005553535</p>
+ <p><a href="registration.html">Заказать</a></p>
+</div>
+<div class="nav_center"><a href="index.html" class="disabled"><p>ИТЗ</p></a>
+</div>
+<div class="nav_right">
+          <a href="index.html">ИСТОРИЯ</a>
+          <a href="animals.html">ОБИТАТЕЛИ</a>
+          <a href="workers.html">СОТРУДНИКИ</a>
+   <div class="dropdown_container">
+    <div class="dropdown_but"><a href="news.html" >НОВОСТИ</a></div>
+    <div class="dropdown_content">
+     <a href="https://iz.ru/794189/video/slonikha-rodila-malysha-v-zooparke-san-diego">Слониха Анта родила</a>
+     <a href="https://www.obozrevatel.com/odesa/details/rodivshegosya-v-odesskom-zooparke-tigrenka-vpervyie-pokazali-lyudyam-umilitelnoe-video.htm">Тигрица Натали впервые вывела тигренка</a>
+     <a href="https://life.liga.net/rozvagy/news/sploshnoy-chill-jivotnye-rovenskogo-zooparka-poymali-osenniy-dzen">
+     Животные зоопарка поймали осенний дзен</a>
+    </div>
+   </div>
+          <a href="#">Поиск</a>
+   </div>
+</nav>
+	</header>
+	<div class="registration_form">
+		<form id="form" onsubmit="return false;">
+			<p><label id="labelName" for="name">Имя<span class="red">*</span></label></p>
+			<input type="text" id="name" required placeholder="Введите имя">
+			<div id="incorrectName">Имя не верное!</div>
+			<p><label id="labelSurname" for="surname">Фамилия<span class="red">*</span></label></p>
+			<input type="text" id="surname" required placeholder="Введите фамилию">
+			<div id="incorrectSurname">Фамилия не верная!</div>
+			<p><label id="labelPatronymic" for="patronymic">Отчество<span class="red">*</span></label></p>
+			<input type="text" id="patronymic" required placeholder="Введите отчество">
+			<div id="incorrectPatr">Отчество не верное</div>
+			<p><label id="labelMail" for="mail">Электронная почта<span class="red">*</span></label></p>
+			<input type="email" id="mail" required placeholder="Введите почту" onblur="validateMail()"/>
+			<div id="incorrectMail">Почта не верная</div>
+			<p><label id="labelPhone" for="phone">Домашний номер</label></p>
+			<input type="phone" id="phone" placeholder="Введите номер"pattern="[0-9]-[0-9]{3}-[0-9]{3}">
+			<div id="incorrectP">Телефон не верный</div>			
+    		<p><label id="labelCount" for="count">Кол-во билетов<span class="red">*</span></label></p>
+    		<select name="count" id="count" required>
+    			<option value="">Указать</option>
+    			<option value="1">1</option>
+    			<option value="2">2</option>
+    			<option value="3">3</option>
+    			<option value="4">4</option>
+    		</select>
+    		<div id="incorrectCount">Кол-во билетов не указано</div>
+    		<p><input class="reg_submit" type="submit" value="Подтвердить" onclick="validate(document.getElementById('form'))">
+    		   <input class="reg_submit" type="reset" value="Очистить">
+		</form>
+	</div>
+	<div id="overlay">
+  <div class="popup">
+    <button class="close" title="Закрыть окно" onclick="swa2()"></button>
+    <p class="zag">Спасибо за заказ!</p>
+    <p>Ваши данные приняты в обработку...</p>
+  </div>
+</div>
+<script>
+var b = document.getElementById('overlay');
+function swa() {
+	b.style.visibility = 'visible';
+	b.style.opacity = '1';
+	b.style.transition = 'all 0.7s ease-out 0s';
+}
+function swa2() {
+	b.style.visibility = 'hidden';
+	b.style.opacity = '0';
+}
+function validateMail() {
+	var input = document.getElementById("mail");
+	var emailRegEx = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}/;
+	input.addEventListener("focusout", function() {
+  	if (!emailRegEx.test(input.value)) {
+  		document.getElementById("incorrectMail").style.display = "block";
+  	} else {
+  		document.getElementById("incorrectMail").style.display = "none";
+  	}
+});
+}
+function validate(form) {
+	var fail = false;
+	var nameLength = form.name.value.length;
+	var name       = form.name.value;
+	var nameRegExp = /[A-ZА-Яа-яa-z]+/
+	if (nameLength <= 1 || !nameRegExp.test(name)) {
+		fail = true;
+		document.getElementById("incorrectName").style.display = "block";
+	} else {
+		document.getElementById("incorrectName").style.display = "none";
+	}
+	var surname = form.surname.value;
+	var surnameLength = form.surname.value.length;
+	var tempSurname = document.getElementById('labelSurname');
+	if (surnameLength <= 1 || !nameRegExp.test(surname)) {
+		document.getElementById("incorrectSurname").style.display = "block";
+		fail = true;
+	} else {
+		document.getElementById("incorrectSurname").style.display = "none";
+	}	
+	var patronymicLength = form.patronymic.length;	
+	var patronymic = form.patronymic.value;
+	if (patronymicLength <= 1 || !nameRegExp.test(patronymic)) {
+		document.getElementById("incorrectPatr").style.display = "block";
+		fail = true;
+	} else {
+		document.getElementById("incorrectPatr").style.display = "none";
+	}
+	var email = form.mail.value;
+	var emailRegEx = /[0-9a-z_-]+@[0-9a-z_-]+\.[a-z]{2,5}/;
+	if (email == '' || email == " ") {
+		document.getElementById("incorrectMail").style.display = "block";
+		fail = true;
+	} else if (!emailRegEx.test(email)) {
+		document.getElementById("incorrectMail").style.display = "block";
+		fail = true;
+	} 
+	else {
+		document.getElementById("incorrectMail").style.display = "none";
+	}
+	var phoneLength = form.phone.value.length;
+	var phoneVal = form.phone.value;
+	var phoneRegEx = /[0-9]-[0-9]{3}-[0-9]{3}/;
+	if (phoneLength <= 3 || !phoneRegEx.test(phoneVal)) {
+		document.getElementById("incorrectP").style.display = "block";
+		fail = true;
+	} else {
+		document.getElementById("incorrectP").style.display = "none";
+	}
+	var count = form.count.value;
+	if (count <= 0) {
+		fail = true;
+		document.getElementById("incorrectCount").style.display = "block";
+	} else {
+		document.getElementById("incorrectCount").style.display = "none";
+	}
+	if (fail == false) {
+		var disName = document.getElementById("name");
+		disName.setAttribute("disabled", "disabled");
+		var disSurname = document.getElementById("surname");
+		disSurname.setAttribute("disabled", "disabled");
+		var disPatr = document.getElementById("patronymic");
+		disPatr.setAttribute("disabled", "disabled");
+		var disMail = document.getElementById("mail");
+		disMail.setAttribute("disabled", "disabled");
+		var disPhone = document.getElementById("phone");
+		disPhone.setAttribute("disabled", "disabled");
+		var disCount = document.getElementById("count");
+		disCount.setAttribute("disabled", "disabled");
+		var disPhone = document.getElementById("phone");
+		disPhone.setAttribute("disabled", "disabled");
+		swa();
+	} 
+	
+}
+</script>
+</body>
+<footer id=footer_workers>&copy;ИТЗ   Zoo 2020.</footer>
+</html>

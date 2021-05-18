@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Our workers</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+	<nav>
+		<div class="nav_left">
+			<p>Zoo</p>
+			<p>Свяжитесь с нами: +078005553535</p>
+		</div>
+		<div class="nav_center"><a href="index.html" ><p>ИТЗ</p></a>
+		</div>
+		<div class="nav_right">
+			<a href="information.html">ИСТОРИЯ</a>
+			<a href="animals.html">ОБИТАТЕЛИ</a>
+			<a href="workers.html" class = "disabled">СОТРУДНИКИ</a>
+			<div class="dropdown_container">
+				<div class="dropdown_but"><a href="news.html">НОВОСТИ</a></div>
+				<div class="dropdown_content">
+					<a href="https://iz.ru/794189/video/slonikha-rodila-malysha-v-zooparke-san-diego">Слониха Анта родила</a>
+					<a href="https://www.obozrevatel.com/odesa/details/rodivshegosya-v-odesskom-zooparke-tigrenka-vpervyie-pokazali-lyudyam-umilitelnoe-video.htm">Тигрица Натали впервые вывела тигренка</a>
+					<a href="https://life.liga.net/rozvagy/news/sploshnoy-chill-jivotnye-rovenskogo-zooparka-poymali-osenniy-dzen">
+						Животные зоопарка поймали осенний дзен</a>
+				</div>
+			</div>
+			<input id="topnav_search_input" type="text" onclick="this.select()"  oninput="handleInput()" onkeyup="mySearch(document.getElementById('topnav_search_input').value)"  placeholder="Поиск...">
+		</div>
+	</nav>
+</header>
+	<h2 style="color: #333;">Наши сотрудники:</h2>
+	<div class="workers_gen">
+	<aside id="workers_aside"><h3>ОСНОВНЫЕ СВЕДЕНИЯ</h3>
+		 Все наши работники имеют огромный стаж и высокий уровень квалификации. Мы налагаем на своих сотрудников обязательства поддерживать высочайший стандарт ухода за животными и обеспечения их жизнедеятельности. Наибольшая
+роль в достижении этой цели отводится обслуживающему персоналу.
+	</aside>
+<table id="workers">
+	<thead>
+		<tr>
+			<td style="width: 30px;">№</td>
+			<td>Должность</td>
+			<td>Описание</td>
+		</tr>
+	</thead>
+	<tr>
+		<td>1</td>
+		<td>Кормящий</td>
+		<td>Следит за тем, чтобы все звери были сыты<br>
+		(3 раза в день).</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Наблюдатель</td>
+		<td>Присматривает за зверями, в случае чего обращается в медпункт.</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>Директор</td>
+		<td>Руководит зоопарком.</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>Охранник</td>
+		<td>Следит за порядком.</td>
+	</tr>
+</table>
+<script type="text/javascript">
+		document.getElementById("topnav_search_input").value = localStorage.getItem("si");
+				var sInput = document.getElementById("topnav_search_input");
+		function handleInput() {
+  		localStorage.setItem("si", document.getElementById("topnav_search_input").value);
+		}
+		if (sInput.value.length >= 1) {
+	
+			mySearch(sInput.value);
+		}
+
+	function mySearch(info) {
+        	var filter, table, tr, td, i, txtValue;
+  
+     	    filter = info.toUpperCase();
+        	table = document.getElementById("workers");
+      
+         	tr = table.getElementsByTagName("tr");
+       
+         	for (i = 0; i < tr.length; i++) {
+             	td = tr[i].getElementsByTagName("td")[1];
+            	if (td) {
+                	txtValue = td.textContent || td.innerText;
+                	if (txtValue.toUpperCase().indexOf(filter) <= filter.length && 			txtValue.toUpperCase().indexOf(filter) > -1) {
+                     	tr[i].style.display = "";
+                 	} else {
+                     	tr[i].style.display = "none";
+                 	}
+             	}
+        	}
+        	
+     	}
+</script>
+<aside>
+<h4>ТИПИЧНЫЙ ДЕНЬ СОТРУДНИКА</h4> Их рабочий день начинается с раннего утра, около семи, задолго до открытия зоопарка.
+ Первые посетители должны наслаждаться общением с животными в уже чистых клетках. Сначала они обходят зверюшек, смотрят, не заболел ли кто, кто как поел, какие предметы — шины, коробки, верёвки,
+ бочки или мячи — использовали для игр. Если питомец заболел, они сразу же звонят ветеринару, по поводу сломанных декораций сообщают в ремонтный отдел. Если всё в порядке, приступают к работе: 
+убирают клетки и вольеры, кормят животных. После обеда небольшое собрание, затем вторая уборка и обязательные тренинги с животными.
+</aside>
+<aside id="right_aside">
+<h4>НОВОРОЖДЕННЫЕ ЖИВОТНЫЕ</h4> За новорождёнными животными в зоопарке ухаживают сами родители, но бывает, что они не справляются со своими обязанностями. Если лосиха родила двух детёнышей, а не одного, 
+приходится их подкармливать. Бывают такие случаи, когда мама-дикобразиха рожает троих, тогда третьего приходится забирать сотрудникам. В природе он бы не выжил, потому что у мамы просто не хватило бы для него молока.  
+</aside>
+</div>
+
+</body>
+<footer id=footer_workers>
+	&copy;ИТЗ   Zoo 2020.
+</footer>
+</html>
